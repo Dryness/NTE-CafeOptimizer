@@ -26,3 +26,4 @@ Each character skill has:
 - `Traffic_Multiply` is applied **after** all flat traffic buffs
 - `Price_Multiply` multiplies the **final dish price** (base + all flat buffs) by a percentage
 - Both multipliers scale with the number of matching menu tags
+- The trend bonus is a flat amount added to a trending dish's price **after** `Price_Multiply`, so it is not scaled by it
