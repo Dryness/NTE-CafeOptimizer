@@ -1,8 +1,21 @@
 # Cafe by Origen — Roster Optimizer
 
-Acess website at https://kuro-121.github.io/NTE-CafeOptimizer/
+Access the website at https://dryness.github.io/NTE-CafeOptimizer/
 
 A web-based optimizer for Cafe by Origen. Finds the best dish menu and character team to maximize Fons/hr income.
+
+## Credits
+
+This is a fork of [Kuro-121/NTE-CafeOptimizer](https://github.com/Kuro-121/NTE-CafeOptimizer), created by [Kuro-121](https://github.com/Kuro-121), with contributions from [its contributors](https://github.com/Kuro-121/NTE-CafeOptimizer/graphs/contributors). All credit for the original optimizer goes to them. The original site is at https://kuro-121.github.io/NTE-CafeOptimizer/.
+
+This fork adds:
+- Akane Rin
+- Trend bonus applied after the price multiplier ([Kuro-121#4](https://github.com/Kuro-121/NTE-CafeOptimizer/issues/4))
+- Own All / Set All L5 buttons on the Characters tab
+- Default Trend Bonus for common trends
+- Characters, Character Buffs and Best Menu shown in game order
+
+These changes have been submitted upstream in [Kuro-121#5](https://github.com/Kuro-121/NTE-CafeOptimizer/pull/5).
 
 ## Features
 - Full optimizer engine (Traffic Flat/Multiply, Price Flat/Multiply)
