@@ -580,9 +580,13 @@ function runOptimizer() {
     for (const sub of trendingSubItems) { if (ingredients.includes(sub)) { subMatch = true; break; } }
     const ingMatch = trendMatch && (ingredients.includes(trendMatch) || subMatch);
     const isTrending = typeMatch || ingMatch;
-    // Trend bonus is a flat add applied after the price multiplier (see upstream issue #4),
-    // so it is kept separate from basePrice.
-    ownedDishes.push({ name: d.name, type: d.type, basePrice: base, trendBonus: isTrending ? trendBonus : 0, isTrending });
+    // How the game applies the trend bonus depends on the kind of trend (verified in-game):
+    // - dish-type trend (e.g. Main Dishes): raises the base price, so Price_Multiply scales it;
+    // - ingredient trend (e.g. Coffee Beans): flat add after the price multiplier (upstream issue #4).
+    // basePrice therefore includes a dish-type bonus; trendBonus holds only the post-multiplier add.
+    const typeBonus = typeMatch ? trendBonus : 0;
+    const ingBonus  = !typeMatch && ingMatch ? trendBonus : 0;
+    ownedDishes.push({ name: d.name, type: d.type, basePrice: base + typeBonus, trendBonus: ingBonus, isTrending });
   });
 
   // Build owned character pool from master data + custom + user state
