@@ -10,7 +10,7 @@ This is a fork of [Kuro-121/NTE-CafeOptimizer](https://github.com/Kuro-121/NTE-C
 
 This fork adds:
 - Akane Rin
-- Trend bonus applied after the price multiplier ([Kuro-121#4](https://github.com/Kuro-121/NTE-CafeOptimizer/issues/4))
+- Coffee Beans trend bonus applied after the price multiplier ([Kuro-121#4](https://github.com/Kuro-121/NTE-CafeOptimizer/issues/4))
 - Own All / Set All L5 buttons on the Characters tab
 - Default Trend Bonus for common trends
 - Characters, Character Buffs and Best Menu shown in game order
@@ -40,5 +40,6 @@ Each character skill has:
 - `Price_Multiply` multiplies the **final dish price** (base + all flat buffs) by a percentage
 - Both multipliers scale with the number of matching menu tags
 - How the trend bonus is applied depends on the trend:
-  - **Dish-type trends** (e.g. `Main Dishes`) add to the dish's base price, so `Price_Multiply` scales the bonus
-  - **Ingredient trends** (e.g. `Coffee Beans`) add a flat amount **after** `Price_Multiply`, so it is not scaled
+  - **Most trends** (confirmed in-game: `Main Dishes`, `Desserts`, `Beverages`, `Flour`) add to the dish's base price, so `Price_Multiply` scales the bonus
+  - **`Coffee Beans`** adds a flat amount **after** `Price_Multiply`, so it is not scaled
+  - `Fruit` has not been checked in-game yet and is treated like the scaled trends

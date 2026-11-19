@@ -554,6 +554,9 @@ document.getElementById('btnRun').addEventListener('click', () => {
   runOptimizer();
 });
 
+// Trends whose bonus the game adds after Price_Multiply instead of scaling it (lowercase).
+const POST_MULTIPLIER_TRENDS = new Set(['coffee beans']);
+
 function runOptimizer() {
   const { cafesOwned, trendCategory, trendBonus } = settings;
   const trendMatch = trendCategory.toLowerCase();
@@ -580,13 +583,15 @@ function runOptimizer() {
     for (const sub of trendingSubItems) { if (ingredients.includes(sub)) { subMatch = true; break; } }
     const ingMatch = trendMatch && (ingredients.includes(trendMatch) || subMatch);
     const isTrending = typeMatch || ingMatch;
-    // How the game applies the trend bonus depends on the kind of trend (verified in-game):
-    // - dish-type trend (e.g. Main Dishes): raises the base price, so Price_Multiply scales it;
-    // - ingredient trend (e.g. Coffee Beans): flat add after the price multiplier (upstream issue #4).
-    // basePrice therefore includes a dish-type bonus; trendBonus holds only the post-multiplier add.
-    const typeBonus = typeMatch ? trendBonus : 0;
-    const ingBonus  = !typeMatch && ingMatch ? trendBonus : 0;
-    ownedDishes.push({ name: d.name, type: d.type, basePrice: base + typeBonus, trendBonus: ingBonus, isTrending });
+    // How the game applies the trend bonus depends on the trend (checked in-game):
+    // - Coffee Beans: flat add after the price multiplier (upstream issue #4);
+    // - every other trend seen so far (Main Dishes, Desserts, Beverages, Flour): raises the
+    //   base price, so Price_Multiply scales it.
+    // basePrice therefore includes a scaled bonus; trendBonus holds only the post-multiplier add.
+    const postMult = isTrending && POST_MULTIPLIER_TRENDS.has(trendMatch);
+    const scaledBonus = isTrending && !postMult ? trendBonus : 0;
+    const flatBonus   = postMult ? trendBonus : 0;
+    ownedDishes.push({ name: d.name, type: d.type, basePrice: base + scaledBonus, trendBonus: flatBonus, isTrending });
   });
 
   // Build owned character pool from master data + custom + user state
