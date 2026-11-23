@@ -40,6 +40,5 @@ Each character skill has:
 - `Price_Multiply` multiplies the **final dish price** (base + all flat buffs) by a percentage
 - Both multipliers scale with the number of matching menu tags
 - How the trend bonus is applied depends on the trend:
-  - **Most trends** (confirmed in-game: `Main Dishes`, `Desserts`, `Beverages`, `Flour`) add to the dish's base price, so `Price_Multiply` scales the bonus
+  - **Most trends** (confirmed in-game: `Main Dishes`, `Desserts`, `Beverages`, `Flour`, `Fruit`) add to the dish's base price, so `Price_Multiply` scales the bonus
   - **`Coffee Beans`** adds a flat amount **after** `Price_Multiply`, so it is not scaled
-  - `Fruit` has not been checked in-game yet and is treated like the scaled trends

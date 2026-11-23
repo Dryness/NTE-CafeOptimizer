@@ -585,7 +585,7 @@ function runOptimizer() {
     const isTrending = typeMatch || ingMatch;
     // How the game applies the trend bonus depends on the trend (checked in-game):
     // - Coffee Beans: flat add after the price multiplier (upstream issue #4);
-    // - every other trend seen so far (Main Dishes, Desserts, Beverages, Flour): raises the
+    // - every other trend seen so far (Main Dishes, Desserts, Beverages, Flour, Fruit): raises the
     //   base price, so Price_Multiply scales it.
     // basePrice therefore includes a scaled bonus; trendBonus holds only the post-multiplier add.
     const postMult = isTrending && POST_MULTIPLIER_TRENDS.has(trendMatch);
